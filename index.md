@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Cloud Native | Nutanix&trade; Workshops</title>
+        <title>CI CD Calm Karbon | Nutanix&trade; Workshops</title>
         <meta name="robots" content="noindex, nofollow">
         <link rel="stylesheet" media="all" href="https://s3.amazonaws.com/handsonworkshops.prod.static/nova/libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" media="all" href="https://s3.amazonaws.com/handsonworkshops.prod.static/nova/libs/font-awesome/css/font-awesome.min.css">
@@ -29,7 +29,7 @@
 <p>Building a CI/CD pipeline generally involves connecting a large number of disparate tools. To streamline this lab, we'll be deploying many of these tools via a Nutanix Calm blueprint. We'll first launch the blueprint, and then in the ~20 minutes it takes to deploy, we'll cover the blueprint architecture to familiarze ourselves with the tools involved.</p>
 <ol>
 <li>In <strong>Prism Central</strong>, select bars <strong>&gt; Services &gt; Calm</strong>.</li>
-<li><p>Select <img src="../images/blueprints_icon.png" alt="bp-icon" /> <strong>Blueprints</strong> in the left hand toolbar to view and manage Calm blueprints.</p>
+<li><p>Select <img src="images/blueprints_icon.png" /> <strong>Blueprints</strong> in the left hand toolbar to view and manage Calm blueprints.</p>
 <blockquote>
 <p><strong>note</strong></p>
 <p>Mousing over an icon will display its title.</p>
