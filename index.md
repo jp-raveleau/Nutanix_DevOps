@@ -36,7 +36,7 @@
 </blockquote></li>
 </ol>
 <ol>
-<li>Select the blueprint titled <strong>CICD_Infra</strong>.</li>
+<li>Select the blueprint titled <strong>LB_CICD_Infra</strong>.</li>
 <li><p>Click <strong>Credentials</strong> plus-circle and fill out the following fields:</p>
 <ul>
 <li><strong>Credential Name</strong> - CENTOS</li>
