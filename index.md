@@ -17,7 +17,7 @@
 <h2 id="overview">Overview</h2>
 <p>Countless studies have shown that reducing the amount of time for developers to receive feedback on code changes improves software quality. Automating the build, test, and deployment of software with tools such as Jenkins is one of the best ways to accelerate software development. If you’re unfamiliar with Jenkins you can learn more on their website <a href="https://www.cloudbees.com/jenkins/about">here</a>.</p>
 <p>In this lab, we'll utilize Nutanix Calm to build the infrastructure required to create a Continuous Integration / Continuous Delivery (CI/CD) Pipeline, which includes deploying Jenkins, a <a href="https://gitea.io/en-us/">Gitea</a> git server, a developer workstation, and configuring that workstation to manage a Karbon Kubernetes cluster. Once the infrastructure is deployed via Nutanix Calm, we'll go through configuring Jenkins and Gitea to create a fully function CI/CD pipeline. The end result will be a developer running a &quot;git push&quot;, which triggers Jenkins to build a docker container based on the new code, publishes that container to DockerHub, and then deploys that container onto the Nutanix Karbon Kubernetes cluster.</p>
-<p><img src="images/01_cicd_pipeline.png" align="center" alt="CI/CDwithGiteaJenkinsandNutanixKarbon" /></p>
+<p><img src="images/01_cicd_pipeline.png" /></p>
 <h2 id="pre-requisites">Pre-requisites</h2>
 <p>This lab requires:</p>
 <ul>
