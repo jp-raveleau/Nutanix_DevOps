@@ -1,9 +1,23 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Cloud Native | Nutanix&trade; Workshops</title>
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="stylesheet" media="all" href="https://s3.amazonaws.com/handsonworkshops.prod.static/nova/libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" media="all" href="https://s3.amazonaws.com/handsonworkshops.prod.static/nova/libs/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" media="screen" href="https://s3.amazonaws.com/handsonworkshops.prod.static/nova/workshops/css/screen.css">
+        <link rel="stylesheet" media="print" href="https://s3.amazonaws.com/handsonworkshops.prod.static/nova/workshops/css/print.css">
+
+        <link rel="shortcut icon" href="https://s3.amazonaws.com/handsonworkshops.prod.media/a/a/logo/nutanix-favicon.ico">
+
+    </head>
 <h1 id="nutanix-calm-and-karbon-cicd">Nutanix Calm and Karbon: CI/CD</h1>
 <p><em>The estimated time to complete this lab is 60 minutes.</em></p>
 <h2 id="overview">Overview</h2>
 <p>Countless studies have shown that reducing the amount of time for developers to receive feedback on code changes improves software quality. Automating the build, test, and deployment of software with tools such as Jenkins is one of the best ways to accelerate software development. If you’re unfamiliar with Jenkins you can learn more on their website <a href="https://www.cloudbees.com/jenkins/about">here</a>.</p>
 <p>In this lab, we'll utilize Nutanix Calm to build the infrastructure required to create a Continuous Integration / Continuous Delivery (CI/CD) Pipeline, which includes deploying Jenkins, a <a href="https://gitea.io/en-us/">Gitea</a> git server, a developer workstation, and configuring that workstation to manage a Karbon Kubernetes cluster. Once the infrastructure is deployed via Nutanix Calm, we'll go through configuring Jenkins and Gitea to create a fully function CI/CD pipeline. The end result will be a developer running a &quot;git push&quot;, which triggers Jenkins to build a docker container based on the new code, publishes that container to DockerHub, and then deploys that container onto the Nutanix Karbon Kubernetes cluster.</p>
-<p><img src="images/01_cicd_pipeline.png%0A%20:align:%20center%0A%20:alt:%20CI/CD%20with%20Gitea,%20Jenkins,%20and%20Nutanix%20Karbon" /></p>
+<p><img src="images/01_cicd_pipeline.png" align="center" alt="CI/CDwithGiteaJenkinsandNutanixKarbon" /></p>
 <h2 id="pre-requisites">Pre-requisites</h2>
 <p>This lab requires:</p>
 <ul>
@@ -343,3 +357,4 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li>Once that is built, utilize the Jenkins syntax generator to create the relevant Jenkinsfile snippet to call your Calm Application Action.</li>
 <li>Substitute out the Kubernetes Deploy snippet with the Calm Application Action snippet in your Jenkinsfile.</li>
 </ul>
+</html>
