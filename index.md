@@ -269,8 +269,10 @@ $ kubectl create -f jenkins-rb.yaml
 </blockquote></li>
 <li><p>We'll now replace the token in our existing kubeconfig with the token of our newly generated Service Account, which we can do in one line with the following command.</p>
 <blockquote>
-
-</blockquote></li>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed <span class="s2">&quot;s/    token:.*/    token: `kubectl get secrets </span><span class="k">$(</span>kubectl get serviceaccounts jenkins -o <span class="nv">jsonpath</span><span class="o">={</span>.secrets<span class="o">[]</span>.name<span class="o">}</span><span class="k">)</span><span class="s2"> -o jsonpath={.data.token} | base64 --decode`/g&quot;</span> ~/.kube/config
+</pre></div>
+</div>
+</div></blockquote>
 <li><p>Copy the long output of that command into your buffer, and head back into the Jenkins UI. Select <strong>Add Credentials</strong> again, fill in the following fields, and click <strong>OK</strong>.</p>
 <ul>
 <li><strong>Kind</strong> - <strong>Kubernetes configuration (kubeconfig)</strong></li>
@@ -323,8 +325,10 @@ $ kubectl create -f jenkins-rb.yaml
 <p><embed src="images/30_jenkins_gen_pipeline.png" style="width:500px;" tag="image30" /></p></li>
 <li><p>Click <strong>Generate Pipeline Script</strong>. In the text box that appears, you should see a string like this, however your <strong>kubeconfigId</strong> <em>will be different</em>. When this string is placed in a Jenkinsfile, it instructs Jenkins to deploy a certain configuration (hello-kubernetes-dep.yaml) against a particular Kubernetes cluster (in our case the cluster config is stored in the kubeconfig credential we created in an earlier section).</p>
 <blockquote>
-
-</blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubernetesDeploy configs: <span class="s1">&#39;hello-kubernetes-dep.yaml&#39;</span>, kubeConfig: <span class="o">[</span>path: <span class="s1">&#39;&#39;</span><span class="o">]</span>, kubeconfigId: <span class="s1">&#39;4ee7aa78-d810-43a3-804c-7cbaf717d225&#39;</span>, secretName: <span class="s1">&#39;&#39;</span>, ssh: <span class="o">[</span>sshCredentialsId: <span class="s1">&#39;*&#39;</span>, sshServer: <span class="s1">&#39;&#39;</span><span class="o">]</span>, textCredentials: <span class="o">[</span>certificateAuthorityData: <span class="s1">&#39;&#39;</span>, clientCertificateData: <span class="s1">&#39;&#39;</span>, clientKeyData: <span class="s1">&#39;&#39;</span>, serverUrl: <span class="s1">&#39;https://&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+</div></blockquote>
 <blockquote>
 <p><strong>note</strong></p>
 <p>The serverUrl field does not need an actual URL as that information is stored in our Kubeconfig.</p>
@@ -341,13 +345,76 @@ $ kubectl create -f jenkins-rb.yaml
 <p><embed src="images/32_dockerhub_username.png" style="width:500px;" tag="image32" /></p></li>
 <li><p>Head over into your Workstation SSH session, and run the following commands to create our <strong>Jenkinsfile</strong>, substituting your unique credential IDs in the second and third commands, and DockerHub username in the fourth (each individual command starts with a &quot;$&quot;, they should be run one at a time, and do <strong>not</strong> include the &quot;$&quot; in the command).</p>
 <blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/hello-kubernetes/
+$ <span class="nv">DOCKER_ID</span><span class="o">=</span>&lt;your-dockerhub-cred-id&gt;
+$ <span class="nv">KUBE_ID</span><span class="o">=</span>&lt;your-kubernetes-kubeconfig-id&gt;
+$ <span class="nv">DOCKER_USER</span><span class="o">=</span>&lt;your-dockerhub-username&gt;
+$ cat <span class="s">&lt;&lt; EOF &gt; Jenkinsfile</span>
+<span class="s">node(&quot;docker&quot;) {</span>
+<span class="s">    docker.withRegistry(&quot;&quot;, &quot;${DOCKER_ID}&quot;) {</span>
 
-</blockquote>
+<span class="s">        git url: &quot;${GIT_REPO_URL}&quot;</span>
+<span class="s">        env.GIT_COMMIT = sh(script: &quot;git rev-parse HEAD&quot;, returnStdout: true).trim()</span>
+
+<span class="s">        stage &quot;Build&quot;</span>
+<span class="s">        def helloK8s = docker.build &quot;${DOCKER_USER}/hello-kubernetes&quot;</span>
+
+<span class="s">        stage &quot;Publish&quot;</span>
+<span class="s">        helloK8s.push &#39;latest&#39;</span>
+<span class="s">        helloK8s.push &quot;\${env.GIT_COMMIT}&quot;</span>
+
+<span class="s">        stage &quot;Deploy&quot;</span>
+<span class="s">        kubernetesDeploy configs: &#39;hello-kubernetes-dep.yaml&#39;, kubeConfig: [path: &#39;&#39;], kubeconfigId: &quot;${KUBE_ID}&quot;, secretName: &#39;&#39;, ssh: [sshCredentialsId: &#39;*&#39;, sshServer: &#39;&#39;], textCredentials: [certificateAuthorityData: &#39;&#39;, clientCertificateData: &#39;&#39;, clientKeyData: &#39;&#39;, serverUrl: &#39;https://&#39;]</span>
+
+<span class="s">    }</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+$ cat Jenkinsfile
+</pre></div>
+</div>
+</div></blockquote>
 <p><embed src="images/33_create_jenkinsfile.png" style="width:500px;" tag="image33"/></p></li>
 <li><p>We'll now create our two Yaml files which will define our application. The first is a <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a> to expose the application outside of the Karbon Kubernetes cluster, and the second is a <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployment</a> which defines the application containers. We’ll create both files within the <strong>hello-kubernetes/</strong> directory, but we’ll <em>only</em> apply the service yaml, as Jenkins will apply the deployment yaml (each individual command starts with a &quot;$&quot;, they should be run one at a time, and do <strong>not</strong> include the &quot;$&quot; in the command).</p>
 <blockquote>
-
-</blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/hello-kubernetes/
+$ cat <span class="s">&lt;&lt; EOF &gt; hello-kubernetes-svc.yaml</span>
+<span class="s">apiVersion: v1</span>
+<span class="s">kind: Service</span>
+<span class="s">metadata:</span>
+<span class="s">  name: hello-kubernetes</span>
+<span class="s">spec:</span>
+<span class="s">  type: LoadBalancer</span>
+<span class="s">  ports:</span>
+<span class="s">  - port: 80</span>
+<span class="s">    targetPort: 8080</span>
+<span class="s">  selector:</span>
+<span class="s">    app: hello-kubernetes</span>
+<span class="s">EOF</span>
+$ cat <span class="s">&lt;&lt; EOF &gt; hello-kubernetes-dep.yaml</span>
+<span class="s">apiVersion: apps/v1</span>
+<span class="s">kind: Deployment</span>
+<span class="s">metadata:</span>
+<span class="s">  name: hello-kubernetes</span>
+<span class="s">spec:</span>
+<span class="s">  replicas: 3</span>
+<span class="s">  selector:</span>
+<span class="s">    matchLabels:</span>
+<span class="s">      app: hello-kubernetes</span>
+<span class="s">  template:</span>
+<span class="s">    metadata:</span>
+<span class="s">      labels:</span>
+<span class="s">        app: hello-kubernetes</span>
+<span class="s">    spec:</span>
+<span class="s">      containers:</span>
+<span class="s">      - name: hello-kubernetes</span>
+<span class="s">        image: ${DOCKER_USER}/hello-kubernetes:\${GIT_COMMIT}</span>
+<span class="s">        ports:</span>
+<span class="s">        - containerPort: 8080</span>
+<span class="s">EOF</span>
+$ kubectl apply -f hello-kubernetes-svc.yaml
+</pre></div>
+</div>
+</div></blockquote>
 <p><embed src="images/34_create_yaml.png" style="width:500px;" tag="image34" /></p>
 <blockquote>
 <p><strong>note</strong></p>
@@ -355,8 +422,12 @@ $ kubectl create -f jenkins-rb.yaml
 </blockquote></li>
 <li><p>Now that our Service is deployed, and our local files are written, it’s time to commit and push changes to our repository with the following commands.</p>
 <blockquote>
-
-</blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add Jenkinsfile hello-kubernetes-dep.yaml hello-kubernetes-svc.yaml
+git commit -m <span class="s1">&#39;Added Jenkinsfile and Application yaml&#39;</span>
+git push
+</pre></div>
+</div>
+</div></blockquote>
 <p><embed src="images/35_git_add_files.png" style="width:500px;" tag="image35"/></p></li>
 </ol>
 <h2 id="manual-build-and-application-deployment">Manual Build and Application Deployment</h2>
@@ -374,8 +445,11 @@ $ kubectl create -f jenkins-rb.yaml
 <p><embed src="images/40_dockerhub_tags.png" style="width:500px;" tag="image40" /></p></li>
 <li><p>We can also validate through the command line that our pods have been deployed, and our application Service has an IP by running the following commands from our Workstation.</p>
 <blockquote>
-
-</blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get pods
+kubectl get svc
+</pre></div>
+</div>
+</div></blockquote>
 <p><img src="images/41_kubectl.png" style="width:500px;" tag="image41" /></p></li>
 <li><p>We can then access our application via the <strong>External-IP</strong> value of the hello-kubernetes service (10.45.100.46 in my case). Be sure to refresh the page several times to see the pod change.</p>
 <p><embed src="images/42_hello_nutanix.png" style="width:500px;" tag="image42" /></p></li>
@@ -385,15 +459,22 @@ $ kubectl create -f jenkins-rb.yaml
 <ol>
 <li><p>From within the <strong>hello-kubernetes/</strong> directory on your workstation, run the following commands to change the code, add the change, commit the change, and finally push the change.</p>
 <blockquote>
-
-</blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed -i <span class="s1">&#39;s|Nutanix|CI/CD|g&#39;</span> server.js
+git add server.js
+git commit -m <span class="s1">&#39;Modified Hello message&#39;</span>
+git push
+</pre></div>
+</div>
+</div></blockquote>
 <p><embed src="images/43_git_push_new_code.png" style="width:500px;" tag="image43"/></p></li>
 <li><p>As soon as you run git push, you should see an automated build started in your Jenkins project.</p>
 <p><embed src="images/44_jenkins_build_2.png" style="width:500px;" tag="image44"/></p></li>
 <li><p>Once the build is complete, let’s first verify we have new pods deployed via the command line.</p>
 <blockquote>
-
-</blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get pods
+</pre></div>
+</div>
+</div></blockquote>
 <p><embed src="images/45_kubectl-get-pods.png" style="width:500px;" tag="image45" /></p></li>
 <li><p>Finally, refresh our application page to view the updated message.</p>
 <p><img src="images/46_hello_cicd.png" style="width:500px;" tag="image46" /></p></li>
