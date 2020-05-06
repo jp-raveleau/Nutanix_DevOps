@@ -110,7 +110,9 @@ gmznERCNf9Kaxl/hlyV5dZBe/2LIK+/jLGNu9EJLoraaCBFshJKF
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 </pre></div>
-</blockquote></li>
+</div>
+</div></blockquote>
+</li>
 <li><p>Double click the result from the previous step's command to copy it to your clipboard.</p>
 <p><embed src="images/07_temp_admin_pass.png" style="width:500px;" tag="image7"/></p></li>
 <li><p>Change to the <strong>Sign in [Jenkins]</strong> tab that was previously opened. In the <strong>Administrator password</strong> field, paste in the contents of the previous step, and click <strong>Continue</strong>.</p>
