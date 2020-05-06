@@ -113,7 +113,7 @@ gmznERCNf9Kaxl/hlyV5dZBe/2LIK+/jLGNu9EJLoraaCBFshJKF
 <li><p>Double click the result from the previous step's command to copy it to your clipboard.</p>
 <p><embed src="images/07_temp_admin_pass.png" /></p></li>
 <li><p>Change to the <strong>Sign in [Jenkins]</strong> tab that was previously opened. In the <strong>Administrator password</strong> field, paste in the contents of the previous step, and click <strong>Continue</strong>.</p>
-<p><embed src="images/08_unlock_jenkins.png" style="width:auto;" /></p></li>
+<p><embed src="images/08_unlock_jenkins.png" style="width:500px;height:600px;" /></p></li>
 <li><p>On the next page, click the large <strong>Install suggested plugins</strong> button.</p>
 <p><embed src="images/09_suggested_plugins.png" /></p></li>
 <li><p>Wait for the suggested plugins to install, after which you'll be re-directed to create the first admin user. Fill in the following fields, and click <strong>Save and Continue</strong>.</p>
