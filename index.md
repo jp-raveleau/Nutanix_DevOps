@@ -13,11 +13,11 @@
 
     </head>
 <h1 id="nutanix-calm-and-karbon-cicd">vExpert Session : Nutanix Calm and Karbon: CI/CD</h1>
-<p><em>The estimated time to complete this lab is 60 minutes.</em></p>
+<p><em>The estimated time to complete this lab is 120 minutes.</em></p>
 <h2 id="overview">Overview</h2>
 <p>Countless studies have shown that reducing the amount of time for developers to receive feedback on code changes improves software quality. Automating the build, test, and deployment of software with tools such as Jenkins is one of the best ways to accelerate software development. If you’re unfamiliar with Jenkins you can learn more on their website <a href="https://www.cloudbees.com/jenkins/about">here</a>.</p>
 <p>In this lab, we'll utilize Nutanix Calm to build the infrastructure required to create a Continuous Integration / Continuous Delivery (CI/CD) Pipeline, which includes deploying Jenkins, a <a href="https://gitea.io/en-us/">Gitea</a> git server, a developer workstation, and configuring that workstation to manage a Karbon Kubernetes cluster. Once the infrastructure is deployed via Nutanix Calm, we'll go through configuring Jenkins and Gitea to create a fully function CI/CD pipeline. The end result will be a developer running a &quot;git push&quot;, which triggers Jenkins to build a docker container based on the new code, publishes that container to DockerHub, and then deploys that container onto the Nutanix Karbon Kubernetes cluster.</p>
-<p><img src="images/01_cicd_pipeline.png" /></p>
+<p><img src="images/01_cicd_pipeline.png" style="width:500px;" tag="image1"/></p>
 <h2 id="pre-requisites">Pre-requisites</h2>
 <p>This lab requires:</p>
 <ul>
@@ -85,7 +85,7 @@ gmznERCNf9Kaxl/hlyV5dZBe/2LIK+/jLGNu9EJLoraaCBFshJKF
 <li><strong>gitea_password</strong> - Any password desired, which will be set as the Gitea admin user password</li>
 <li><strong>karbon_cluster_name</strong> - The name of the Karbon cluster to use for this lab (it <strong>must</strong> already be depoyed). If the cluster was staged, leave the default of <strong>karbon_bootcamp_cluster</strong>.</li>
 </ul>
-<p><img src="images/03_bp_launch_2.png" /></p></li>
+<p><img src="images/03_bp_launch_2.png" style="width:500px;" tag="image3"/></p></li>
 <li>Click the blue <strong>Create</strong> button, and ensure you're redirected to the application page.</li>
 </ol>
 <p>Now that we're waiting for our CI/CD Infrastructure to deploy, let's review the architecture of the blueprint. If desired, open the blueprint in Calm and view the Services and their underlying scripts as they're covered. Alternatively, here's an image of the blueprint canvas.</p>
