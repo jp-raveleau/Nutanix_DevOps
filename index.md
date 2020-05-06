@@ -111,11 +111,11 @@ gmznERCNf9Kaxl/hlyV5dZBe/2LIK+/jLGNu9EJLoraaCBFshJKF
 
 </blockquote></li>
 <li><p>Double click the result from the previous step's command to copy it to your clipboard.</p>
-<p><embed src="images/07_temp_admin_pass.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Master%20Temporary%20Admin%20Password" /></p></li>
+<p><embed src="images/07_temp_admin_pass.png" /></p></li>
 <li><p>Change to the <strong>Sign in [Jenkins]</strong> tab that was previously opened. In the <strong>Administrator password</strong> field, paste in the contents of the previous step, and click <strong>Continue</strong>.</p>
-<p><embed src="images/08_unlock_jenkins.png%0A%20:align:%20center%0A%20:alt:%20Unlock%20Jenkins" /></p></li>
+<p><embed src="images/08_unlock_jenkins.png" /></p></li>
 <li><p>On the next page, click the large <strong>Install suggested plugins</strong> button.</p>
-<p><embed src="images/09_suggested_plugins.png%0A%20:align:%20center%0A%20:alt:%20Install%20Jenkins%20Suggested%20Plugins" /></p></li>
+<p><embed src="images/09_suggested_plugins.png" /></p></li>
 <li><p>Wait for the suggested plugins to install, after which you'll be re-directed to create the first admin user. Fill in the following fields, and click <strong>Save and Continue</strong>.</p>
 <ul>
 <li><strong>Username</strong> - admin</li>
@@ -129,17 +129,17 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 // -->
 </script><noscript>&#110;&#x6f;&#114;&#x65;&#112;&#108;&#x79;&#32;&#x61;&#116;&#32;&#110;&#x75;&#116;&#x61;&#110;&#x69;&#120;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;</noscript></li>
 </ul>
-<p><embed src="images/10_create_user.png%0A%20:align:%20center%0A%20:alt:%20Create%20Jenkins%20Admin%20User" /></p></li>
+<p><embed src="images/10_create_user.png" /></p></li>
 <li>On the Instance Configuration page that appears, <strong>leave</strong> the Jenkins URL as <strong>default</strong>, and click <strong>Save and Finish</strong>.</li>
 <li><p>Jenkins setup is now complete, but first our Jenkins instance needs to be restarted. Click <strong>Restart</strong>, and then move on to the next section.</p>
-<p><embed src="images/11_restart_jenkins.png%0A%20:align:%20center%0A%20:alt:%20Restart%20Jenkins" /></p></li>
+<p><embed src="images/11_restart_jenkins.png" /></p></li>
 </ol>
 <h2 id="accessing-the-developer-workstation">Accessing the Developer Workstation</h2>
 <p>Throughout this entire lab, we'll be running a large number of commands from our developer workstation, as it has already been configured with all the necessary software packages, the correct kubeconfig file, and is pointed at our git repository that's stored in Gitea.</p>
 <p>To access the developer workstation, you have two options: 1, use the web SSH client as we did for the Jenkins Service, or 2, use your laptop's terminal or PuTTY to SSH into the workstation. Either option is perfectly valid, however we recommend you stick with whatever you're most comfortable with. Since we already covered how to use the web SSH client in the previous step, we'll cover SSH'ing in from your laptop here.</p>
 <ol>
 <li><p>Back in our Calm application page, navigate to the <strong>Services</strong> tab, and select the <strong>Workstation</strong> Service. In the right column that appears, <strong>copy</strong> the IP address of the service by clicking the button just to the right of the IP.</p>
-<p><img src="images/12_copy_workstation_ip.png%0A%20:align:%20center%0A%20:alt:%20CI/CD%20Infrastructure%20App%20Copy%20Workstation%20IP" /></p></li>
+<p><img src="images/12_copy_workstation_ip.png" /></p></li>
 <li><p>In your laptop's terminal, run the following commands to SSH into your workstation (be sure to subsitute in your workstation IP).</p>
 <blockquote>
 
@@ -148,7 +148,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <blockquote>
 
 </blockquote>
-<p><embed src="images/13_validate_workstation.png%0A%20:align:%20center%0A%20:alt:%20Validate%20Workstation%20Configuration" /></p></li>
+<p><embed src="images/13_validate_workstation.png" /></p></li>
 </ol>
 <h2 id="gitea-webhook-setup">Gitea Webhook Setup</h2>
 <p>Our next configuration step is to create a webhook in Gitea, which tells Gitea to inform some server (in our case Jenkins) each time there is a new commit. Many popular git servers have this functionality, including GitHub, GitLab, and Gitea.</p>
@@ -156,15 +156,15 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li>We'll access our Gitea Service in the same manner as Jenkins, by navigating to the <strong>Overview</strong> tab of our Calm application, right clicking on the <strong>Gitea</strong> link, and opening it in a new tab.</li>
 <li>It is expected to receive a warning from your browser about the site's security certificate not being trusted by your computer. This is due to the use of self signed SSL certificates during setup (which is not recommended for production workloads). Select the <strong>Proceed Anyway</strong> option (exact wording may depend on your browser).</li>
 <li><p>On the Gitea homepage, click the <strong>Sign In</strong> button in the upper right.</p>
-<p><embed src="images/14_gitea_home.png%0A%20:align:%20center%0A%20:alt:%20Gitea%20Homepage" /></p></li>
+<p><embed src="images/14_gitea_home.png" /></p></li>
 <li><p>Sign in with the following credentials.</p>
 <ul>
 <li><strong>Username</strong> - gitadmin</li>
 <li><strong>Password</strong> - your password specified when launching the Calm blueprint</li>
 </ul>
-<p><embed src="images/15_gitea_signin.png%0A%20:align:%20center%0A%20:alt:%20Gitea%20Sign%20In" /></p></li>
+<p><embed src="images/15_gitea_signin.png" /></p></li>
 <li><p>On the page that appears, click the <strong>gitadmin/hello-kubernetes</strong> repository link, then <strong>Settings</strong> along the right-hand side, and finally the <strong>Webhooks</strong> tab.</p>
-<p><embed src="images/16_repo_settings.png%0A%20:align:%20center%0A%20:alt:%20Gitea%20Repository%20Settings" /></p></li>
+<p><embed src="images/16_repo_settings.png" /></p></li>
 <li><p>Click the blue <strong>Add Webhook</strong> button, in the list that appears click <strong>Gitea</strong>, and then fill in the following fields.</p>
 <ul>
 <li><strong>Target URL</strong> - The output of the <strong>echo $JENKINS_HOOK_URL</strong> command from the previous &quot;Developer Workstation&quot; section, should be of the format <strong><a href="http://">http://</a>&lt;jenkins-ip&gt;:8080/gitea-webhook/post</strong></li>
@@ -175,28 +175,28 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li><strong>Branch filter</strong> - Leave the default of * (this means the webhook will be triggered for <em>any</em> branch)</li>
 <li><strong>Active</strong> - Leave the Active checkbox <strong>enabled</strong>.</li>
 </ul>
-<p><embed src="images/17_gitea_add_webhook.png%0A%20:align:%20center%0A%20:alt:%20Gitea%20Add%20Webhook" /></p></li>
+<p><embed src="images/17_gitea_add_webhook.png" /></p></li>
 <li><p>Click the green <strong>Add Webhook</strong> button. You should receive a notification that the webhook has been added.</p>
-<p><embed src="images/18_gitea_webhook_added.png%0A%20:align:%20center%0A%20:alt:%20Gitea%20Webhook%20Added" /></p></li>
+<p><embed src="images/18_gitea_webhook_added.png" /></p></li>
 <li><p>To validate the webhook is operating as expected, click the <strong>pencil</strong> to the right of the webhook. Scroll all the way to the bottom of the page, and click the teal <strong>Test Delivery</strong> button. After a moment, the page should refresh, and there should be a successful test event created. If the <strong>Response</strong> has a green <strong>200</strong> code, then everything is configured properly.</p>
-<p><embed src="images/19_gitea_test_webhook.png%0A%20:align:%20center%0A%20:alt:%20Gitea%20Successful%20Test%20Webhook" /></p></li>
+<p><embed src="images/19_gitea_test_webhook.png" /></p></li>
 </ol>
 <h2 id="dockerhub-setup">DockerHub Setup</h2>
 <p>After a GitHub commit triggers a Jenkins build, and Jenkins successfully builds our new docker image, it needs some place to store the image. In this lab, we'll be using DockerHub, however there are many free container registries available.</p>
 <ol>
 <li><p>First, login to <a href="https://hub.docker.com/">DockerHub</a> (or create a free account) and click the <strong>Create Repository</strong> button.</p>
-<p><embed src="images/20_dockerhub_create_1.png%0A%20:align:%20center%0A%20:alt:%20DockerHub%20Create%20Repository%20Button" /></p></li>
+<p><embed src="images/20_dockerhub_create_1.png" /></p></li>
 <li><p>Name the repository <strong>hello-kubernetes</strong>, give it a description of your choice, leave all other fields as default (be sure to leave the repo as <strong>Public</strong>), and click <strong>Create</strong>.</p>
-<p><embed src="images/21_dockerhub_create_2.png%0A%20:align:%20center%0A%20:alt:%20DockerHub%20Create%20Repository" /></p></li>
+<p><embed src="images/21_dockerhub_create_2.png" /></p></li>
 </ol>
 <h2 id="jenkins-credentials-creation">Jenkins Credentials Creation</h2>
 <p>The first step of our Jenkins Setup is to add our various credentials to Jenkins’ credential store, which gives Jenkins the ability to authenticate to other pieces of our pipeline. We’ll first add our DockerHub credentials, which allows Jenkins to push images. <strong>TODO: Validate this statement. In many environments, you would also need to add git credentials for Jenkins to be able to read the repository, however in this particular environment, our Gitea server has our git repository marked as public, so no authentication is necessary to read the repo.</strong> Lastly, we’ll add our Karbon kubeconfig file to allow Jenkins to deploy our application directly onto our Kubernetes cluster.</p>
 <ol>
 <li>Log in to your Jenkins server with the credentials you created earlier (you may need to refresh your browser page due to the Jenkins reboot in a previous section).</li>
 <li><p>In the Jenkins UI, select <strong>Credentials</strong> along the left, and then in the <strong>Stores scoped to Jenkins</strong> section, select the <strong>global</strong> domain.</p>
-<p><embed src="images/22_jenkins_global_creds.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Global%20Credentials" /></p></li>
+<p><embed src="images/22_jenkins_global_creds.png" /></p></li>
 <li><p>Click <strong>Add Credentials</strong> along the left column.</p>
-<p><embed src="images/23_jenkins_add_creds.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Add%20Global%20Credentials" /></p></li>
+<p><embed src="images/23_jenkins_add_creds.png" /></p></li>
 <li><p>Fill in the following fields to add your DockerHube credentials, and click <strong>OK</strong>.</p>
 <ul>
 <li><strong>Kind</strong> - leave as default (<strong>Username with password</strong>)</li>
@@ -206,7 +206,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li><strong>ID</strong> - leave blank</li>
 <li><strong>Description</strong> - <strong>DockerHub Credentials</strong></li>
 </ul>
-<p><embed src="images/24_jenkins_dockerhub_creds.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Add%20DockerHub%20Credentials" /></p></li>
+<p><embed src="images/24_jenkins_dockerhub_creds.png" /></p></li>
 <li><p>Lastly, we’ll need to add our kubeconfig file as a credential to allow Jenkins to deploy our updated application onto our Kubernetes cluster. In our Workstation CLI, run the following commands to create a Kubernetes Service Account <strong>jenkins</strong>, and then create a Role Binding which maps our Service Account the the built-in <strong>admin</strong> role (each individual command starts with a &quot;$&quot;, they should be run one at a time, and do <strong>not</strong> include the &quot;$&quot; in the command).</p>
 <blockquote>
 
@@ -228,17 +228,17 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li><strong>Kubeconfig</strong> - select the <strong>Enter directly</strong> radio button</li>
 <li><strong>Content</strong> - paste in the output from the previous step</li>
 </ul>
-<p><embed src="images/25_jenkins_kubconfig.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Add%20Kubeconfig%20Credential" /></p></li>
+<p><embed src="images/25_jenkins_kubconfig.png" /></p></li>
 </ol>
 <h2 id="jenkins-pipeline-creation">Jenkins Pipeline Creation</h2>
 <p>It's now time to create our Jenkins Pipeline. The pipeline is the crux of this entire CI/CD workload: our Gitea webhook calls this pipeline, which is then responsible for building our docker container, uploading the container to DockerHub, and deploying the new container to our Karbon Kubernetes cluster.</p>
 <ol>
 <li><p>In the Jenkins UI, click <strong>New Item</strong> in the upper left, enter <strong>hello-kubernetes</strong> as the name, select <strong>Pipeline</strong>, and click <strong>OK</strong>.</p>
-<p><embed src="images/26_jenkins_create_pipeline_1.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Create%20Pipeline%201" /></p></li>
+<p><embed src="images/26_jenkins_create_pipeline_1.png" /></p></li>
 <li><p>Under the <strong>General</strong> section, give your pipeline a description, and leave all checkboxes as <strong>unselected</strong>.</p>
-<p><embed src="images/27_jenkins_create_pipeline_2.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Create%20Pipeline%202" /></p></li>
+<p><embed src="images/27_jenkins_create_pipeline_2.png" /></p></li>
 <li><p>Under the <strong>Build Triggers</strong> section, select <strong>Poll SCM</strong>, and leave the Schedule <strong>blank</strong>. Without a schedule, Jenkins will <em>only</em> run this pipeline from a Webhook, which is desired for this setup. Leave all other checkboxes as <strong>unselected</strong>.</p>
-<p><embed src="images/28_jenkins_create_pipeline_3.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Create%20Pipeline%203" /></p></li>
+<p><embed src="images/28_jenkins_create_pipeline_3.png" /></p></li>
 <li>Skip the <strong>Advanced Project Options</strong> section.</li>
 <li><p>Under the <strong>Pipeline</strong> section, fill in the following fields.</p>
 <ul>
@@ -255,7 +255,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li><strong>Script Path</strong> - Leave as default of <strong>Jenkinsfile</strong></li>
 <li><strong>Lightweight checkout</strong> - Leave as default <strong>checked</strong></li>
 </ul>
-<p><embed src="images/29_jenkins_create_pipeline_4.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Create%20Pipeline%204" /></p></li>
+<p><embed src="images/29_jenkins_create_pipeline_4.png" /></p></li>
 <li>Click <strong>Save</strong> to save the pipeline configuration.</li>
 </ol>
 <h2 id="jenkins-pipeline-snippet-generator">Jenkins Pipeline Snippet Generator</h2>
@@ -268,7 +268,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li><strong>Config Files</strong> - enter <strong>hello-kubernetes-dep.yaml</strong> (we have not created this file yet, but will in an upcoming section)</li>
 <li>Leave all other options as <strong>defaults</strong></li>
 </ul>
-<p><embed src="images/30_jenkins_gen_pipeline.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Generate%20Pipeline%20Script" /></p></li>
+<p><embed src="images/30_jenkins_gen_pipeline.png" /></p></li>
 <li><p>Click <strong>Generate Pipeline Script</strong>. In the text box that appears, you should see a string like this, however your <strong>kubeconfigId</strong> <em>will be different</em>. When this string is placed in a Jenkinsfile, it instructs Jenkins to deploy a certain configuration (hello-kubernetes-dep.yaml) against a particular Kubernetes cluster (in our case the cluster config is stored in the kubeconfig credential we created in an earlier section).</p>
 <blockquote>
 
@@ -284,19 +284,19 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <ol>
 <li>In the Jenkins UI, click the <strong>Jenkins</strong> icon in the upper left to navigate home, and then select <strong>Credentials</strong> along the left column.</li>
 <li><p>Take note of the <strong>ID</strong> column in the Credentials table. These values will be unique on every system, and your specific values are needed when we create our Jenkinsfile.</p>
-<p><embed src="images/31_jenkins_cred_ids.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Credentials%20IDs" /></p></li>
+<p><embed src="images/31_jenkins_cred_ids.png" /></p></li>
 <li><p>In your DockerHub UI, select your <strong>hello-kubernetes</strong> repository, and along the right side, take note of the <strong>docker push &lt;your-username&gt;/hello-kubernetes:tagname</strong> field. Your username will be needed in the next step when we create our Jenkinsfile.</p>
-<p><embed src="images/32_dockerhub_username.png%0A%20:align:%20center%0A%20:alt:%20DockerHub%20Username" /></p></li>
+<p><embed src="images/32_dockerhub_username.png" /></p></li>
 <li><p>Head over into your Workstation SSH session, and run the following commands to create our <strong>Jenkinsfile</strong>, substituting your unique credential IDs in the second and third commands, and DockerHub username in the fourth (each individual command starts with a &quot;$&quot;, they should be run one at a time, and do <strong>not</strong> include the &quot;$&quot; in the command).</p>
 <blockquote>
 
 </blockquote>
-<p><embed src="images/33_create_jenkinsfile.png%0A%20:align:%20center%0A%20:alt:%20Create%20Jenkinsfile" /></p></li>
+<p><embed src="images/33_create_jenkinsfile.png" /></p></li>
 <li><p>We'll now create our two Yaml files which will define our application. The first is a <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a> to expose the application outside of the Karbon Kubernetes cluster, and the second is a <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployment</a> which defines the application containers. We’ll create both files within the <strong>hello-kubernetes/</strong> directory, but we’ll <em>only</em> apply the service yaml, as Jenkins will apply the deployment yaml (each individual command starts with a &quot;$&quot;, they should be run one at a time, and do <strong>not</strong> include the &quot;$&quot; in the command).</p>
 <blockquote>
 
 </blockquote>
-<p><embed src="images/34_create_yaml.png%0A%20:align:%20center%0A%20:alt:%20Create%20Application%20YAML" /></p>
+<p><embed src="images/34_create_yaml.png" /></p>
 <blockquote>
 <p><strong>note</strong></p>
 <p>Take note of the ${GIT_COMMIT} value in the deployment YAML. Jenkins will automatically substitute in the git commit ID, so each time the deployment is applied, the image tag is incremented, and the pods are re-deployed.</p>
@@ -305,28 +305,28 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <blockquote>
 
 </blockquote>
-<p><embed src="images/35_git_add_files.png%0A%20:align:%20center%0A%20:alt:%20Git%20Add%20and%20Commit%20Jenkinsfile%20and%20App%20YAML%20Files" /></p></li>
+<p><embed src="images/35_git_add_files.png" /></p></li>
 </ol>
 <h2 id="manual-build-and-application-deployment">Manual Build and Application Deployment</h2>
 <p>Typically, running <strong>git push</strong> will trigger a Jenkins build through the GitHub webhook, however this will not work until we manually trigger a build. This is because the SCM details (including the project URL) in the Jenkins pipeline are not initialized until the first build, and without those details Jenkins is not able to determine the correlation between the webhook and the pipeline. Let’s manually kick off a build to get things started.</p>
 <ol>
 <li><p>In the Jenkins UI, navigate to our <strong>hello-kubernetes</strong> Pipeline, and click the <strong>Build Now</strong> link in the left column.</p>
-<p><embed src="images/36_jenkins_manual_build.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Manual%20Build" /></p></li>
+<p><embed src="images/36_jenkins_manual_build.png" /></p></li>
 <li><p>Build #1 should appear in the <strong>Build History</strong> section in the left column. Click the <strong>#1</strong> link, and then select <strong>Console Output</strong> in the left column. This allows us to monitor the status of the Jenkins build. At the top of the build, we should see a successful login to DockerHub.</p>
-<p><embed src="images/37_jenkins_console_1.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Build%20#1%20Console%20Output%201" /></p></li>
+<p><embed src="images/37_jenkins_console_1.png" /></p></li>
 <li><p>In the middle of our console output we should see the docker image being successfully built.</p>
-<p><embed src="images/38_jenkins_console_2.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Build%20#1%20Console%20Output%202" /></p></li>
+<p><embed src="images/38_jenkins_console_2.png" /></p></li>
 <li><p>At the bottom of the console output we should see our image being tagged, pushed to DockerHub, and then finally our <strong>kubernetesDeploy</strong> task deploying our containers to our Karbon Kubernetes cluster.</p>
-<p><embed src="images/39_jenkins_console_3.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Build%20#1%20Console%20Output%203" /></p></li>
+<p><embed src="images/39_jenkins_console_3.png" /></p></li>
 <li><p>In DockerHub, we can validate that our newly pushed container is present, with both our GIT_COMMIT and <strong>latest</strong> labels.</p>
-<p><embed src="images/40_dockerhub_tags.png%0A%20:align:%20center%0A%20:alt:%20DockerHub%20Repository%20Tags" /></p></li>
+<p><embed src="images/40_dockerhub_tags.png" /></p></li>
 <li><p>We can also validate through the command line that our pods have been deployed, and our application Service has an IP by running the following commands from our Workstation.</p>
 <blockquote>
 
 </blockquote>
 <p><img src="images/41_kubectl.png%0A%20:align:%20center%0A%20:alt:%20Kubectl%20Get%20Pods%20/%20Svc" /></p></li>
 <li><p>We can then access our application via the <strong>External-IP</strong> value of the hello-kubernetes service (10.45.100.46 in my case). Be sure to refresh the page several times to see the pod change.</p>
-<p><embed src="images/42_hello_nutanix.png%0A%20:align:%20center%0A%20:alt:%20Hello%20Nutanix%20Application" /></p></li>
+<p><embed src="images/42_hello_nutanix.png" /></p></li>
 </ol>
 <h2 id="automated-application-deployment-through-a-git-push">Automated Application Deployment Through a Git Push</h2>
 <p>If you’ve made it this far, congratulations! We’re finally at a point where we can kick off fully automated builds and deployments. To do so, we need to commit and push a change in our application code. So our change is obvious, we’ll change the <strong>Hello Nutanix!</strong> message to <strong>Hello CI/CD!</strong>.</p>
@@ -335,16 +335,16 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <blockquote>
 
 </blockquote>
-<p><embed src="images/43_git_push_new_code.png%0A%20:align:%20center%0A%20:alt:%20Git%20Push%20New%20Application%20Code" /></p></li>
+<p><embed src="images/43_git_push_new_code.png" /></p></li>
 <li><p>As soon as you run git push, you should see an automated build started in your Jenkins project.</p>
-<p><embed src="images/44_jenkins_build_2.png%0A%20:align:%20center%0A%20:alt:%20Jenkins%20Automatic%20Build%202" /></p></li>
+<p><embed src="images/44_jenkins_build_2.png" /></p></li>
 <li><p>Once the build is complete, let’s first verify we have new pods deployed via the command line.</p>
 <blockquote>
 
 </blockquote>
-<p><embed src="images/45_kubectl-get-pods.png%0A%20:align:%20center%0A%20:alt:%20Kubectl%20Get%20Pods%20after%20Git%20Push" /></p></li>
+<p><embed src="images/45_kubectl-get-pods.png" /></p></li>
 <li><p>Finally, refresh our application page to view the updated message.</p>
-<p><img src="images/46_hello_cicd.png%0A%20:align:%20center%0A%20:alt:%20Hello%20CI/CD%20Application" /></p></li>
+<p><img src="images/46_hello_cicd.png" /></p></li>
 </ol>
 <h2 id="takeaways">Takeaways</h2>
 <p>While setting up a CI/CD pipeline can be quite a bit of effort, the value it brings to your organization makes it well worth it. Once configured, a simple git push -- an operation your developers likely run several times a day -- results in a brand new application, with minimal to no effort on your or the developers part. This can be further expanded into advanced techniques like Canary releases or A/B testing. Thanks for reading!</p>
