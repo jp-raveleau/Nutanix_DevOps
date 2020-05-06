@@ -103,19 +103,19 @@ gmznERCNf9Kaxl/hlyV5dZBe/2LIK+/jLGNu9EJLoraaCBFshJKF
 <p>Now that our CI/CD Infrastructure has been deployed, we're ready to start configuration of the various components that make up our Pipeline. First up, is Jenkins.</p>
 <ol>
 <li><p>On the <strong>Overview</strong> tab of your Application, <strong>right click</strong> on the <strong>Jenkins</strong> link, and open the page in a new tab.</p>
-<p><img src="images/05_app_overview.png" /></p></li>
+<p><img src="images/05_app_overview.png" style="width:500px;" tag="image5"/></p></li>
 <li><p>While still within the Calm Application page, navigate to the <strong>Services</strong> tab, select the <strong>Jenkins_Master</strong> Service, and in the right column, click <strong>Open Terminal</strong>.</p>
-<p><img src="images/06_open_terminal.png" /></p></li>
+<p><img src="images/06_open_terminal.png" style="width:500px;" tag="image6"/></p></li>
 <li><p>In the Web SSH Terminal that just opened, run the following command to print out Jenkins' temporary administrator password.</p>
 <blockquote>
 
 </blockquote></li>
 <li><p>Double click the result from the previous step's command to copy it to your clipboard.</p>
-<p><embed src="images/07_temp_admin_pass.png" /></p></li>
+<p><embed src="images/07_temp_admin_pass.png" style="width:500px;" tag="image7"/></p></li>
 <li><p>Change to the <strong>Sign in [Jenkins]</strong> tab that was previously opened. In the <strong>Administrator password</strong> field, paste in the contents of the previous step, and click <strong>Continue</strong>.</p>
 <p><embed src="images/08_unlock_jenkins.png" style="width:500px;" tag="image8" /></p></li>
 <li><p>On the next page, click the large <strong>Install suggested plugins</strong> button.</p>
-<p><embed src="images/09_suggested_plugins.png" /></p></li>
+<p><embed src="images/09_suggested_plugins.png" style="width:500px;" tag="image9" /></p></li>
 <li><p>Wait for the suggested plugins to install, after which you'll be re-directed to create the first admin user. Fill in the following fields, and click <strong>Save and Continue</strong>.</p>
 <ul>
 <li><strong>Username</strong> - admin</li>
