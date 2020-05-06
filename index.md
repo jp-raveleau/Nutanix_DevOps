@@ -242,8 +242,27 @@ ssh -i ~/calmkey centos@&lt;workstation-ip&gt;
 <p><embed src="images/24_jenkins_dockerhub_creds.png" style="width:500px;" tag="image24" /></p></li>
 <li><p>Lastly, we’ll need to add our kubeconfig file as a credential to allow Jenkins to deploy our updated application onto our Kubernetes cluster. In our Workstation CLI, run the following commands to create a Kubernetes Service Account <strong>jenkins</strong>, and then create a Role Binding which maps our Service Account the the built-in <strong>admin</strong> role (each individual command starts with a &quot;$&quot;, they should be run one at a time, and do <strong>not</strong> include the &quot;$&quot; in the command).</p>
 <blockquote>
-
-</blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/
+$ kubectl create serviceaccount jenkins
+$ cat <span class="s">&lt;&lt; EOF &gt; jenkins-rb.yaml</span>
+<span class="s">apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="s">kind: RoleBinding</span>
+<span class="s">metadata:</span>
+<span class="s">  namespace: default</span>
+<span class="s">  name: jenkins-rolebinding</span>
+<span class="s">roleRef:</span>
+<span class="s">  apiGroup: rbac.authorization.k8s.io</span>
+<span class="s">  kind: ClusterRole</span>
+<span class="s">  name: admin</span>
+<span class="s">subjects:</span>
+<span class="s">- kind: ServiceAccount</span>
+<span class="s">  name: jenkins</span>
+<span class="s">  namespace: default</span>
+<span class="s">EOF</span>
+$ kubectl create -f jenkins-rb.yaml
+</pre></div>
+</div>
+</div></blockquote>
 <blockquote>
 <p><strong>note</strong></p>
 <p>We're limiting our jenkins Service Account to a single Kubernetes namespace (default).</p>
