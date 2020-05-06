@@ -12,7 +12,7 @@
         <link rel="shortcut icon" href="https://s3.amazonaws.com/handsonworkshops.prod.media/a/a/logo/nutanix-favicon.ico">
 
     </head>
-<h1 id="nutanix-calm-and-karbon-cicd">Nutanix Calm and Karbon: CI/CD</h1>
+<h1 id="nutanix-calm-and-karbon-cicd">vExpert Session : Nutanix Calm and Karbon: CI/CD</h1>
 <p><em>The estimated time to complete this lab is 60 minutes.</em></p>
 <h2 id="overview">Overview</h2>
 <p>Countless studies have shown that reducing the amount of time for developers to receive feedback on code changes improves software quality. Automating the build, test, and deployment of software with tools such as Jenkins is one of the best ways to accelerate software development. If you’re unfamiliar with Jenkins you can learn more on their website <a href="https://www.cloudbees.com/jenkins/about">here</a>.</p>
@@ -85,11 +85,11 @@ gmznERCNf9Kaxl/hlyV5dZBe/2LIK+/jLGNu9EJLoraaCBFshJKF
 <li><strong>gitea_password</strong> - Any password desired, which will be set as the Gitea admin user password</li>
 <li><strong>karbon_cluster_name</strong> - The name of the Karbon cluster to use for this lab (it <strong>must</strong> already be depoyed). If the cluster was staged, leave the default of <strong>karbon_bootcamp_cluster</strong>.</li>
 </ul>
-<p><img src="images/03_bp_launch_2.png%0A%20:align:%20center%0A%20:alt:%20Nutanix%20Calm%20CI/CD%20Infrastructure%20Blueprint%20Launch%202" /></p></li>
+<p><img src="images/03_bp_launch_2.png" /></p></li>
 <li>Click the blue <strong>Create</strong> button, and ensure you're redirected to the application page.</li>
 </ol>
 <p>Now that we're waiting for our CI/CD Infrastructure to deploy, let's review the architecture of the blueprint. If desired, open the blueprint in Calm and view the Services and their underlying scripts as they're covered. Alternatively, here's an image of the blueprint canvas.</p>
-<p><img src="images/04_calm_cicd_infra_bp.png%0A%20:align:%20center%0A%20:alt:%20Nutanix%20Calm%20CI/CD%20Infrastructure%20Blueprint%20Architecture" /></p>
+<p><img src="images/04_calm_cicd_infra_bp.png" /></p>
 <p>In approximate order (approximate as Calm deploys Services in parallel, unless there is a dependency), the blueprint deploys the following Services:</p>
 <ul>
 <li><strong>Kubernetes</strong> (Existing machine) - this Service utilizes VM Pre-create eScript tasks to make API calls into Prism Central, to find a Karbon Kubernetes cluster matching the <strong>karbon_cluster_name</strong> variable defined at launch. It also sets the content of the cluster's <a href="https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/">kubeconfig</a> as a variable, which will be later applied to the Workstation VM.</li>
@@ -103,9 +103,9 @@ gmznERCNf9Kaxl/hlyV5dZBe/2LIK+/jLGNu9EJLoraaCBFshJKF
 <p>Now that our CI/CD Infrastructure has been deployed, we're ready to start configuration of the various components that make up our Pipeline. First up, is Jenkins.</p>
 <ol>
 <li><p>On the <strong>Overview</strong> tab of your Application, <strong>right click</strong> on the <strong>Jenkins</strong> link, and open the page in a new tab.</p>
-<p><img src="images/05_app_overview.png%0A%20:align:%20center%0A%20:alt:%20Nutanix%20Calm%20CI/CD%20Infrastructure%20App%20Overview" /></p></li>
+<p><img src="images/05_app_overview.png" /></p></li>
 <li><p>While still within the Calm Application page, navigate to the <strong>Services</strong> tab, select the <strong>Jenkins_Master</strong> Service, and in the right column, click <strong>Open Terminal</strong>.</p>
-<p><img src="images/06_open_terminal.png%0A%20:align:%20center%0A%20:alt:%20CI/CD%20Infrastructure%20App%20Open%20Terminal" /></p></li>
+<p><img src="images/06_open_terminal.png" /></p></li>
 <li><p>In the Web SSH Terminal that just opened, run the following command to print out Jenkins' temporary administrator password.</p>
 <blockquote>
 
